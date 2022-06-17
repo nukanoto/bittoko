@@ -1,6 +1,19 @@
+use anyhow::Result;
 use bittoko::Bittoko;
 
-fn main() {
+fn main() -> Result<()> {
     let btk = Bittoko::new_testnet();
-    println!("{:?}", btk.find_seed_node());
+
+    use bittoko::protocol::header::P2PProtocolHeaders;
+
+    let bin = &[
+        0xf9, 0xbe, 0xb4, 0xd9, 0x76, 0x65, 0x72, 0x61, 0x63, 0x6b, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x5d, 0xf6, 0xe0, 0xe2,
+    ];
+
+    let header = P2PProtocolHeaders::serialize(bin).unwrap();
+
+    println!("{:x}", header.start_string);
+
+    Ok(())
 }
