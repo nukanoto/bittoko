@@ -30,7 +30,7 @@ impl<'a> P2PProtocolHeaders<'a> {
 
 impl<'a> P2PProtocolSerDeTrait<'a> for P2PProtocolHeaders<'a> {
     fn serialize(raw: &'a [u8]) -> Result<Self> {
-fdas        let mut offset = 0;
+        let mut offset = 0;
         let start_string: u32 = raw.pread_with(offset, Endian::Big)?;
         offset += 4;
         let command_name: &str = raw.pread(offset)?;
@@ -49,7 +49,7 @@ fdas        let mut offset = 0;
     }
 
     fn deserialize() -> &'a [u8] {
-
+        todo!()
     }
 }
 
